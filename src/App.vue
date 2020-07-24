@@ -1,19 +1,26 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <nav>
+      <router-link :to="item.path" v-for="(item, index) in nav" :key="index">{{item.meta.navName}}</router-link>
+    </nav>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import routes from "./scripts/router/menu";
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  name: "App",
+  components: {},
+  computed: {
+    nav() {
+      return routes;
+    }
+  },
+  created() {
+    // console.log(routes[0].meta.navName)
   }
-}
+};
 </script>
 
 <style>
@@ -24,5 +31,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+a {
+  text-decoration: none;
 }
 </style>
